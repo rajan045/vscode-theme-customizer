@@ -1,221 +1,94 @@
-# VSCode Theme Customizer
+# VSCode Theme Customizer by Rajan Singh
 
-A beautiful blue and green theme customization package for Visual Studio Code that provides a modern, eye-friendly color scheme for your development environment.
+> **🎯 This is a TEMPLATE package! Take it and customize it as you want.**
 
-## 🎨 Theme Preview
+A simple VSCode theme template with blue/green colors that you can easily modify to create your own custom themes.
 
-This theme features:
+## 💡 The MVP Concept
 
-- **Blue/Green Color Scheme**: A modern blue and green palette that's easy on the eyes
-- **Comprehensive Coverage**: Customizes all major VSCode interface elements
-- **Professional Look**: Clean, modern appearance suitable for professional development
-- **High Contrast**: Good contrast ratios for readability
+**This package is designed as a starting template.** The core idea is:
 
-### Color Palette
+1. **Install** → Get a working theme instantly
+2. **Fork/Copy** → Take the code as your foundation
+3. **Customize** → Change colors, add features, make it yours
+4. **Share** → Create your own theme packages
 
-- **Primary Blue**: `#0066cc` (Activity bar, borders, highlights)
-- **Dark Blue**: `#004c99` (Backgrounds, headers)
-- **Deep Blue**: `#003366` (Status bar, title bar)
-- **Accent Green**: `#00cc44` (Cursor, badges, active elements)
-- **Dark Background**: `#1e1e1e` (Editor background)
-- **Sidebar Background**: `#15202b` (Sidebar, panels)
-
-## 📦 Installation
-
-### Install from npm
+## 🚀 One-Step Installation
 
 ```bash
-npm install -g vscode-theme-customizer
+npm i vscode-theme-customizer
 ```
 
-### Install locally in your project
+That's it! The theme will be automatically applied to your project's `.vscode/settings.json`.
 
-```bash
-npm install --save-dev vscode-theme-customizer
-```
+## 🎨 What You Get
 
-## 🚀 Usage
+A complete VSCode theme that customizes:
 
-### Quick Setup (Recommended)
+- Activity Bar, Editor, Status Bar, Title Bar
+- Sidebar, Panel, Terminal, Tabs
+- All with a blue/green color scheme
 
-The easiest way to apply the theme is using the CLI tool:
+**Sample Colors:**
 
-```bash
-# Apply theme to current project
-vscode-theme-customizer
+- Primary Blue: `#0066cc`
+- Dark Blue: `#004c99`
+- Accent Green: `#00cc44`
+- Editor Background: `#1e1e1e`
 
-# Or explicitly use the apply command
-vscode-theme-customizer apply
-```
+## 🔧 How to Customize
 
-This will create or update the `.vscode/settings.json` file in your current directory with the theme customizations.
+### Option 1: Quick Override
 
-### Manual Setup
-
-If you prefer to manually copy the settings:
-
-1. Create a `.vscode` directory in your project root (if it doesn't exist)
-2. Copy the theme configuration from `templates/settings.json` to `.vscode/settings.json`
-3. Restart VSCode or reload the window
-
-### Programmatic Usage
-
-You can also use the theme programmatically in your Node.js applications:
-
-```javascript
-const {
-  getThemeConfig,
-  getThemeConfigJSON,
-  getColorsByCategory,
-} = require("vscode-theme-customizer");
-
-// Get the complete theme configuration as an object
-const themeConfig = getThemeConfig();
-
-// Get the theme as a JSON string
-const themeJSON = getThemeConfigJSON();
-
-// Get colors for a specific category
-const editorColors = getColorsByCategory("editor");
-const activityBarColors = getColorsByCategory("activityBar");
-```
-
-## 🛠️ CLI Commands
-
-```bash
-# Apply theme to current project (default command)
-vscode-theme-customizer
-vscode-theme-customizer apply
-
-# Show help information
-vscode-theme-customizer help
-vscode-theme-customizer --help
-
-# Show version information
-vscode-theme-customizer version
-vscode-theme-customizer --version
-```
-
-## 📁 What Gets Customized
-
-The theme customizes the following VSCode interface elements:
-
-### Activity Bar (Left Sidebar)
-
-- Background colors and hover effects
-- Icon colors for active and inactive states
-- Badge styling for notifications
-
-### Editor
-
-- Background and text colors
-- Selection and highlight colors
-- Cursor color and line highlighting
-- Bracket matching
-- Line numbers and gutter
-
-### Status Bar (Bottom)
-
-- Background and text colors
-- Hover effects for status items
-- Remote connection indicator
-
-### Title Bar (Top)
-
-- Active and inactive window states
-- Text colors and backgrounds
-
-### Sidebar (File Explorer)
-
-- Background colors
-- Section headers
-- File and folder text colors
-
-### Panel (Terminal/Debug Console)
-
-- Background colors
-- Border styling
-- Tab indicators
-
-### Terminal
-
-- Background and text colors
-- Cursor styling
-- ANSI color customizations
-
-### Tabs
-
-- Active and inactive tab styling
-- Background colors and borders
-
-## 🔧 Customization
-
-### Modifying Colors
-
-If you want to customize the colors, you can:
-
-1. **Fork this package** and modify the color values in `index.js`
-2. **Override specific colors** in your project's `.vscode/settings.json` after applying the theme
-3. **Use the programmatic API** to build your own color combinations
-
-### Example Override
-
-After applying the theme, you can override specific colors in your `.vscode/settings.json`:
+After installation, edit `.vscode/settings.json` to override specific colors:
 
 ```json
 {
   "workbench.colorCustomizations": {
-    // ... theme colors will be here ...
-
-    // Your custom overrides
-    "activityBar.background": "#your-custom-color",
-    "editor.background": "#your-preferred-background"
+    "activityBar.background": "#your-color",
+    "editor.background": "#your-background"
   }
 }
 ```
 
-## 🤝 Contributing
+### Option 2: Fork & Build Your Own
 
-Contributions are welcome! Please feel free to submit a Pull Request. Here are some ways you can contribute:
+1. Fork this repository
+2. Modify colors in `index.js`
+3. Update `package.json` with your theme name
+4. Publish your own theme package
 
-- **Report bugs** or suggest improvements
-- **Add new color variations** or themes
-- **Improve documentation**
-- **Add tests** for the CLI tool
-- **Enhance the programmatic API**
+### Option 3: Use Programmatically
 
-### Development Setup
+```javascript
+const {
+  getThemeConfig,
+  getColorsByCategory,
+} = require("vscode-theme-customizer");
 
-1. Clone the repository
-2. Run `npm install`
-3. Make your changes
-4. Test the CLI tool: `node bin/cli.js apply`
-5. Submit a pull request
+// Get all colors
+const theme = getThemeConfig();
 
-## 📝 License
+// Get specific category colors
+const editorColors = getColorsByCategory("editor");
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📂 Project Structure
 
-## 🐛 Issues
+```
+├── index.js          # Theme colors (main customization file)
+├── bin/cli.js        # CLI tool
+├── bin/postinstall.js # Auto-application script
+└── templates/        # Template files
+```
 
-If you encounter any issues or have suggestions, please [open an issue](https://github.com/yourusername/vscode-theme-customizer/issues) on GitHub.
+## 🎯 Perfect For
 
-## 📚 Changelog
-
-### v1.0.0
-
-- Initial release with blue/green theme
-- CLI tool for easy theme application
-- Programmatic API for theme access
-- Complete VSCode interface coverage
-- Template files for manual setup
-
-## 🙏 Acknowledgments
-
-- Inspired by the VSCode community's awesome theme ecosystem
-- Color palette designed for optimal readability and eye comfort
-- Built with ❤️ for developers who spend long hours coding
+- **Developers** who want to create custom VSCode themes
+- **Teams** who need branded development environments
+- **Learning** how VSCode theme customization works
+- **Quick Setup** for consistent project theming
 
 ---
 
-**Happy coding with your new theme! 🎨✨**
+**Take this template and make it your own! 🚀**
