@@ -1,0 +1,44 @@
+{
+  "name": "vscode-theme-customizer",
+  "version": "1.0.0",
+  "description": "A VSCode theme customizer package that provides blue/green theme configurations for your workspace",
+  "main": "index.js",
+  "bin": {
+    "vscode-theme-customizer": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vscode",
+    "theme",
+    "customization",
+    "color",
+    "workspace",
+    "settings",
+    "blue",
+    "green",
+    "editor"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/vscode-theme-customizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/vscode-theme-customizer/issues"
+  },
+  "homepage": "https://github.com/yourusername/vscode-theme-customizer#readme",
+  "files": [
+    "index.js",
+    "bin/",
+    "templates/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
