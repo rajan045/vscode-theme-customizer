@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const { getThemeConfigJSON } = require('../index.js');
 
 const VSCODE_DIR = '.vscode';
 const SETTINGS_FILE = 'settings.json';
@@ -33,37 +32,35 @@ function ensureVSCodeDirectory(projectDir) {
 function applyThemeToProject() {
     const projectDir = getUserProjectDirectory();
     const settingsPath = path.join(projectDir, VSCODE_DIR, SETTINGS_FILE);
-    const themeConfig = getThemeConfigJSON();
+    
+    // Get the path to the template file (relative to this script's location)
+    const templatePath = path.join(__dirname, '..', 'templates', 'settings.json');
     
     try {
         const vscodePath = ensureVSCodeDirectory(projectDir);
         
-        let existingSettings = {};
-        
-        // Read existing settings if file exists
-        if (fs.existsSync(settingsPath)) {
-            const existingContent = fs.readFileSync(settingsPath, 'utf8');
-            try {
-                existingSettings = JSON.parse(existingContent);
-                console.log('📄 Found existing settings.json file');
-            } catch (error) {
-                console.warn('⚠️  Warning: Existing settings.json has invalid JSON, backing up...');
-                fs.writeFileSync(`${settingsPath}.backup`, existingContent);
-                console.log(`📄 Backed up existing file to ${settingsPath}.backup`);
-            }
+        // Check if template file exists
+        if (!fs.existsSync(templatePath)) {
+            throw new Error('Template settings.json file not found');
         }
         
-        // Parse theme config and merge with existing settings
-        const newThemeConfig = JSON.parse(themeConfig);
-        const mergedSettings = {
-            ...existingSettings,
-            ...newThemeConfig
-        };
+        // Read the template with comments preserved
+        const templateContent = fs.readFileSync(templatePath, 'utf8');
         
-        // Write the merged settings
-        fs.writeFileSync(settingsPath, JSON.stringify(mergedSettings, null, 4));
+        // Back up existing settings if they exist
+        if (fs.existsSync(settingsPath)) {
+            const backupPath = `${settingsPath}.backup`;
+            const existingContent = fs.readFileSync(settingsPath, 'utf8');
+            fs.writeFileSync(backupPath, existingContent);
+            console.log('📄 Found existing settings.json - backed up to settings.json.backup');
+            console.log('💡 The theme will replace your current settings. Merge manually if needed.');
+        }
+        
+        // Write the template with comments preserved
+        fs.writeFileSync(settingsPath, templateContent);
         console.log(`🎨 VSCode theme customizer installed successfully!`);
         console.log(`📁 Theme applied to: ${path.relative(process.cwd(), settingsPath)}`);
+        console.log('📖 Settings file includes helpful comments explaining each customization');
         console.log('🔄 Restart VSCode or reload the window to see the changes');
         
     } catch (error) {

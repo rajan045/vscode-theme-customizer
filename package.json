@@ -1,6 +1,6 @@
 {
   "name": "vscode-theme-customizer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A VSCode theme customizer package that provides blue/green theme configurations for your workspace",
   "main": "index.js",
   "bin": {
